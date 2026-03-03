@@ -23,12 +23,14 @@ body{
     height:500px;
 }
 
+/* Ursinho */
 .bear{
     position:absolute;
     bottom:40px;
     left:40px;
     font-size:60px;
     animation: bounce 1s infinite alternate;
+    z-index:3;
 }
 
 @keyframes bounce{
@@ -36,12 +38,14 @@ body{
     to{ transform:translateY(-10px); }
 }
 
+/* Corações */
 .heart{
     position:absolute;
     font-size:20px;
     opacity:0;
     transform:scale(0);
     transition:0.4s;
+    z-index:1;
 }
 
 .show{
@@ -49,25 +53,29 @@ body{
     transform:scale(1);
 }
 
+/* Nome centralizado REAL */
 .name{
     position:absolute;
-    top:45%;
+    top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    font-size:45px;
+    font-size:50px;
     opacity:0;
     transition:2s;
-    text-shadow:0 0 20px red;
+    text-shadow:0 0 25px red;
+    z-index:5;
 }
 
+/* Texto inferior fixo */
 .subtitle{
     position:absolute;
     bottom:20px;
     width:100%;
     text-align:center;
-    font-size:25px;
+    font-size:28px;
     opacity:0;
     transition:2s;
+    z-index:5;
 }
 </style>
 </head>
@@ -75,7 +83,7 @@ body{
 <body>
 
 <div class="scene" id="scene">
-    <div class="bear">🍓</div>
+    <div class="bear"> 😼🍓</div>
     <div class="name" id="name">Rhayssa ❤️</div>
     <div class="subtitle" id="sub">Eu te amo</div>
 </div>
@@ -93,7 +101,6 @@ function heartShape(t){
 }
 
 let i = 0;
-let hearts = [];
 
 const interval = setInterval(()=>{
 
@@ -115,8 +122,6 @@ const interval = setInterval(()=>{
         heart.style.top = 250 - y*12 + "px";
         heart.classList.add("show");
     },50);
-
-    hearts.push(heart);
 
     i++;
     if(i>100){
