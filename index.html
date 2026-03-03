@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para Rhayssa ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family: Arial, sans-serif;
+    color:white;
+}
+
+.scene{
+    position:relative;
+    width:600px;
+    height:500px;
+}
+
+.bear{
+    position:absolute;
+    bottom:40px;
+    left:40px;
+    font-size:60px;
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce{
+    from{ transform:translateY(0); }
+    to{ transform:translateY(-10px); }
+}
+
+.heart{
+    position:absolute;
+    font-size:20px;
+    opacity:0;
+    transform:scale(0);
+    transition:0.4s;
+}
+
+.show{
+    opacity:1;
+    transform:scale(1);
+}
+
+.name{
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:45px;
+    opacity:0;
+    transition:2s;
+    text-shadow:0 0 20px red;
+}
+
+.subtitle{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    text-align:center;
+    font-size:25px;
+    opacity:0;
+    transition:2s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene" id="scene">
+    <div class="bear">🐻💘</div>
+    <div class="name" id="name">Rhayssa ❤️</div>
+    <div class="subtitle" id="sub">Eu te amo</div>
+</div>
+
+<script>
+const scene = document.getElementById("scene");
+const nameText = document.getElementById("name");
+const sub = document.getElementById("sub");
+
+function heartShape(t){
+    const x = 16*Math.pow(Math.sin(t),3);
+    const y = 13*Math.cos(t) - 5*Math.cos(2*t)
+            - 2*Math.cos(3*t) - Math.cos(4*t);
+    return {x,y};
+}
+
+let i = 0;
+let hearts = [];
+
+const interval = setInterval(()=>{
+
+    const t = i * 0.15;
+    const {x,y} = heartShape(t);
+
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+
+    // começa perto do ursinho
+    heart.style.left = "100px";
+    heart.style.top = "400px";
+
+    scene.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.style.left = 300 + x*12 + "px";
+        heart.style.top = 250 - y*12 + "px";
+        heart.classList.add("show");
+    },50);
+
+    hearts.push(heart);
+
+    i++;
+    if(i>100){
+        clearInterval(interval);
+
+        setTimeout(()=>{
+            nameText.style.opacity="1";
+            sub.style.opacity="1";
+        },1500);
+    }
+
+},80);
+</script>
+
+</body>
+</html>
